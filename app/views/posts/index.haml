@@ -11,3 +11,7 @@
     %li.post--short-size
       .post__title= link_to post.title, post_path(post)
       .post__body= post.truncated_body
+      .post__body 
+        %em
+          = post.comments.count
+          comments
