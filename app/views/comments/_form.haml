@@ -1,10 +1,6 @@
 = simple_form_for([post, post.comments.build]) do |f|
 	
 	%p
-		= f.label :author
-		= f.text_field :author
-
-	%p
 		= f.label :body
 		= f.text_area :body, { cols: 40, rows: 5 }
 

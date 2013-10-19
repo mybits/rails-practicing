@@ -12,6 +12,8 @@ class CommentsController < ApplicationController
 
 	
 	def create
+		comment = post.comments.build(params[:comment])
+		comment.user = current_user
 		comment.save
 		redirect_to post_path(post)
 	end
