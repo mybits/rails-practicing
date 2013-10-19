@@ -4,6 +4,7 @@ class Comment
 	
 	belongs_to :post
 	belongs_to :user
+	has_many :votes
 
 	field :user, type: String
 	field :body, type: String
