@@ -1,0 +1,9 @@
+%ul
+  - post.comments.each do |comment|
+    %li.post--short-size
+      %em
+        %p
+          Posted #{time_ago_in_words(comment.created_at)} ago
+      %p By: #{comment.author}
+      %div
+        = comment.body
