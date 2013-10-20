@@ -9,8 +9,10 @@
             = link_to 'up', vote_up_post_comment_path(post.id, comment.id, :value1 => 1), method: :post
             | Score: #{comment.votes_value}
             | All votes: #{comment.votes.count}
-            | Abusive? #{comment.abusive}
-            = link_to 'down', vote_up_post_comment_path(post.id, comment.id, :value1 => -1), method: :posts       
-        %p By: #{current_user.name}
+            | Abusive? #{comment.abusive}            | 
+            = link_to 'down', vote_up_post_comment_path(post.id, comment.id, :value1 => -1), method: :post
+            - comment.votes.each do |vote|
+              Vote-user-ID: #{vote.user_id}    
+        %p By: #{comment.user}
         %div
           = comment.body

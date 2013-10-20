@@ -14,4 +14,5 @@ class Comment
 
 	validates_presence_of :user, :body
 
+	
 end
