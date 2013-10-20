@@ -21,8 +21,18 @@ class CommentsController < ApplicationController
 
 
 	def vote_up
-    comment.votes.create(:user_id => current_user.id, :value => params[:value1])
+    comment.votes.create(:user_id => current_user.id, :value => params[:value1].to_i)
+    val = params[:value1].to_i
+    summary = comment.votes_value + val
+   
+    if summary <= -3 && comment.abusive == false
+    	 comment.update_attribute :abusive, true    	 
+    end
+
+    comment.update_attribute :votes_value, summary
     redirect_to post_path(post),  :method => :post
+
+
   end
 
 end
