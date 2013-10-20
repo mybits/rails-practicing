@@ -7,20 +7,24 @@
             Posted #{time_ago_in_words(comment.created_at)} ago
             &nbsp
             = link_to 'up', vote_up_post_comment_path(post.id, comment.id, :value1 => 1), method: :post
+            |
+            = link_to 'down', vote_up_post_comment_path(post.id, comment.id, :value1 => -1), method: :post
             | Score: #{comment.votes_value}
             | All votes: #{comment.votes.count}
-            | Abusive? #{comment.abusive}            | 
-            = link_to 'down', vote_up_post_comment_path(post.id, comment.id, :value1 => -1), method: :post
-            / - comment.votes.each do |vote|
-            /   Vote-user-ID: #{vote.user_id}
-            ID: #{post.user_id} 
-            currID: #{current_user.id} 
         %p By: #{comment.user}
         %div
           = comment.body
     - elsif current_user.id == post.user_id
-      = link_to 'Mark as not abusive', mark_as_not_abusive_post_comment_path(post.id, comment.id), method: :post
-      %p By: #{comment.user}
-      %p By: #{post.user_id}
-      %div
-        = comment.body
+      %div.post--short-size
+        %b
+          %em
+            Commment considered abusive /
+        = link_to 'Mark as not abusive', mark_as_not_abusive_post_comment_path(post.id, comment.id), method: :post
+        
+        %p
+        Score: #{comment.votes_value}
+        | All votes: #{comment.votes.count}
+        %p
+        %p By: #{comment.user}  
+        %div
+          = comment.body

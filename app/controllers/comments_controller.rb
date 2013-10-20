@@ -61,7 +61,7 @@ class CommentsController < ApplicationController
   	if comment.abusive && (current_user.owner? post)
   		comment.update_attribute :abusive, false
   		comment.update_attribute :votes_value, 0
-  		flash[:notice] = "UnAbused!!!"
+  		flash[:notice] = "Comment marked as not abusive"
   	end
   	redirect_to post_path(post)
   end
