@@ -10,7 +10,7 @@ class Comment
 	field :user, type: String
 	field :body, type: String
 	field :abusive, type: Boolean, default: false
-	field :vote, type: Integer, default: 0
-
+	
 	validates_presence_of :user, :body
+
 end

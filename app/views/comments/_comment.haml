@@ -5,9 +5,11 @@
         %p
           Posted #{time_ago_in_words(comment.created_at)} ago
           &nbsp
-          = link_to 'up'
-          |
-          = link_to 'down'
+          = link_to 'up', vote_up_post_comment_path(post.id, comment.id, :value1 => 1), method: :post
+          = comment.votes.count
+          = link_to 'down', vote_up_post_comment_path(post.id, comment.id, :value1 => -1), method: :post
+          - comment.votes.each do |vote|
+            Value #{vote.value}
       %p By: #{current_user.name}
       %div
         = comment.body
