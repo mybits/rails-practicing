@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 	before_filter :authenticate_user!
 	expose(:post)
-	expose(:comments) { post.comments }
+	# expose(:comments) { post.comments }
 	expose(:comment)  
 	expose(:vote) 
 

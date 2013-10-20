@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   expose(:user)
   expose_decorated(:posts)
   expose_decorated(:post)
+  expose(:comments)
   expose(:tag_cloud) { [] }
 
   def index
