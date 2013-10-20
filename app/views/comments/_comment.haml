@@ -11,8 +11,16 @@
             | All votes: #{comment.votes.count}
             | Abusive? #{comment.abusive}            | 
             = link_to 'down', vote_up_post_comment_path(post.id, comment.id, :value1 => -1), method: :post
-            - comment.votes.each do |vote|
-              Vote-user-ID: #{vote.user_id}    
+            / - comment.votes.each do |vote|
+            /   Vote-user-ID: #{vote.user_id}
+            ID: #{post.user_id} 
+            currID: #{current_user.id} 
         %p By: #{comment.user}
         %div
           = comment.body
+    - elsif current_user.id == post.user_id
+      = link_to 'Mark as not abusive', mark_as_not_abusive_post_comment_path(post.id, comment.id), method: :post
+      %p By: #{comment.user}
+      %p By: #{post.user_id}
+      %div
+        = comment.body

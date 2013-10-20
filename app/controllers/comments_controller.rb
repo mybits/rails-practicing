@@ -54,5 +54,16 @@ class CommentsController < ApplicationController
     end
     return false
   end	
+
+
+  def mark_as_not_abusive
+  	flash[:notice] = "Post: #{post.id} You: #{current_user.id} - author: #{post.user}."
+  	if comment.abusive && (current_user.owner? post)
+  		comment.update_attribute :abusive, false
+  		comment.update_attribute :votes_value, 0
+  		flash[:notice] = "UnAbused!!!"
+  	end
+  	redirect_to post_path(post)
+  end
  
 end

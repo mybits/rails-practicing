@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
+  expose(:user)
   expose_decorated(:posts)
   expose_decorated(:post)
   expose(:tag_cloud) { [] }
@@ -35,6 +36,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    post.user = current_user
     if post.save
       redirect_to action: :index
     else
