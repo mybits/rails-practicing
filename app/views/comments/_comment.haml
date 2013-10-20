@@ -4,6 +4,10 @@
       %em
         %p
           Posted #{time_ago_in_words(comment.created_at)} ago
+          &nbsp
+          = link_to 'up'
+          |
+          = link_to 'down'
       %p By: #{current_user.name}
       %div
         = comment.body

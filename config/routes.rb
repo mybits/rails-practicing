@@ -6,7 +6,11 @@ Easyblog::Application.routes.draw do
   devise_for :users
   resources :users
   resources :posts do
-    resources :comments 
+    resources :comments do
+      member do
+        post :vote_up
+      end 
+    end
     member do
       post :mark_archived
     end
