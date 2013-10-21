@@ -28,8 +28,16 @@ class CommentsController < ApplicationController
       return
     end
 
-	  comment.votes.create(:user_id => current_user.id, :value => params[:value1].to_i)
-	  val = params[:value1].to_i
+    # check for injection security
+    val = params[:value1].to_i
+      if val != 1 && val != -1
+      	flash[:alert] = "Bad vote, you bad voter!"
+     		redirect_to post_path(post)	
+     		return
+     	end
+
+	  comment.votes.create(:user_id => current_user.id, :value => val)
+	  
 	  summary = comment.votes_value + val
 	  abusive?
     comment.update_attribute :votes_value, summary
@@ -56,8 +64,7 @@ class CommentsController < ApplicationController
   end	
 
 
-  def mark_as_not_abusive
-  	flash[:notice] = "Post: #{post.id} You: #{current_user.id} - author: #{post.user}."
+  def mark_as_not_abusive  	
   	if comment.abusive && (current_user.owner? post)
   		comment.update_attribute :abusive, false
   		comment.update_attribute :votes_value, 0
