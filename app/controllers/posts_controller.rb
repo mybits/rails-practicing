@@ -16,23 +16,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    if current_user.owner? post 
-      post.save     
-      redirect_to post_path, notice: "Post has been updated."
-    else
-      flash[:alert] = "You can update only your own posts."
-      render action: :show
-    end
+    post.save     
+    redirect_to post_path, notice: "Post has been updated."
   end
 
   def destroy
-    if current_user.owner? post
-      post.destroy
-      redirect_to posts_path, notice: "Post was deleted."
-    else
-      flash[:alert] = "You can delete only your own posts."
-      render action: :show
-    end
+    post.destroy
+    redirect_to posts_path, notice: "Post was deleted."    
   end
 
   def show
