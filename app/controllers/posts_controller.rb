@@ -21,8 +21,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post.destroy
-    redirect_to posts_path, notice: "Post was deleted."    
+    if current_user.owner? post
+      post.destroy
+      redirect_to posts_path, notice: "Post was deleted."    
+    end
   end
 
   def show
