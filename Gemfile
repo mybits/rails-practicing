@@ -30,6 +30,7 @@ group :development do
   gem 'hub', require: nil
   gem 'yell-rails'
   gem 'pry'
+  gem 'awesome_print', :require => 'ap'
 end
 
 group :development, :test do
