@@ -1,3 +1,2 @@
-## Rails App for Netguru RoR Workshop - Test Blog
+### rails app - practicing&workshop
 
-https://github.com/netguru/testblog
