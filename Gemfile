@@ -15,6 +15,7 @@ gem 'decent_decoration'
 gem 'pry'
 gem 'flatui-rails', github: 'pkurek/flatui-rails'
 gem 'thin'
+gem 'mailcatcher'
 
 group :assets do
   gem 'sass-rails'
